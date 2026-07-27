@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block no pages — this is a single-page app
+Disallow:
+
+# Sitemap location
+Sitemap: https://time-email-f9688.web.app/sitemap.xml
+
+# Crawl delay (optional, helps with rate limiting)
+Crawl-delay: 5

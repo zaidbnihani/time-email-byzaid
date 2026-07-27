@@ -1,0 +1,6 @@
+{
+  "name": "email-time-byzaid",
+  "description": "بريد إلكتروني مؤقت مجاني مع استخراج OTP تلقائي - Free temporary email with automatic OTP extraction",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "email-time-byzaid",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint": "echo 'No lint step required'"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
