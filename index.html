@@ -7,6 +7,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
   <!-- ═══════════════════════════════════════════
        SEO — Primary Meta Tags
@@ -165,8 +168,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 
   <!-- App Stylesheet (Preloaded) -->
-  <link rel="preload" href="css/styles.css" as="style">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preload" href="css/styles.css?v=2.1.0" as="style">
+  <link rel="stylesheet" href="css/styles.css?v=2.1.0">
 </head>
 <body>
 
@@ -387,9 +390,26 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <!-- App Scripts -->
-  <script src="js/mailtm-api.js"></script>
-  <script src="js/otp-parser.js"></script>
-  <script src="js/firebase-config.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/mailtm-api.js?v=2.1.0"></script>
+  <script src="js/otp-parser.js?v=2.1.0"></script>
+  <script src="js/firebase-config.js?v=2.1.0"></script>
+  <script src="js/app.js?v=2.1.0"></script>
+  <script>
+    // Ensure any previously cached service workers or PWA caches on mobile devices are cleared
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function(names) {
+        for (let name of names) {
+          caches.delete(name);
+        }
+      });
+    }
+  </script>
 </body>
 </html>

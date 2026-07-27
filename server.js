@@ -8,8 +8,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3000;
 
-// Serve static assets from the current directory
-app.use(express.static(__dirname));
+// Serve static assets with no-cache headers to ensure mobile browsers always get latest updates
+app.use(express.static(__dirname, {
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+}));
 
 // Fallback all routes to index.html
 app.get('*', (req, res) => {
