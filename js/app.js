@@ -47,14 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
      1. INITIALIZATION & SESSION RESTORE
      ------------------------------------------------------------- */
   async function initApp() {
-    if (typeof AOS !== 'undefined') {
-      AOS.init({
-        duration: 700,
-        once: true,
-        disable: window.innerWidth <= 768
-      });
-    }
-
     setupEventListeners();
     await loadDomains();
 
