@@ -1559,18 +1559,31 @@ body.light-theme .message-body {
   -webkit-backdrop-filter: var(--backdrop-blur);
   border: 1px solid var(--border-active);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  padding: 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
   width: 100%;
   max-width: 500px;
   box-shadow: 0 -10px 45px rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1rem;
   transform: translateY(100%) translateZ(0);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
   max-height: 88vh;
   overflow-y: auto;
+}
+
+.sheet-drag-handle {
+  width: 38px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  margin: 0 auto 0.2rem;
+  flex-shrink: 0;
+}
+
+body.light-theme .sheet-drag-handle {
+  background: rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 640px) {

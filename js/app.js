@@ -119,10 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       saveSession();
 
+      // Reset state and clear DOM elements completely for the new account
       messages = [];
       knownMessageIds.clear();
       renderedMessageIds.clear();
       selectedMessage = null;
+      if (messagesListEl) {
+        messagesListEl.innerHTML = '';
+      }
+      if (inboxCountBadge) {
+        inboxCountBadge.textContent = '0';
+      }
       renderInboxList();
       renderMessageDetail(null);
 
@@ -356,12 +363,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!messages || messages.length === 0) {
       emptyInboxEl.style.display = 'flex';
       messagesListEl.style.display = 'none';
+      messagesListEl.innerHTML = '';
       renderedMessageIds.clear();
       return;
     }
 
     emptyInboxEl.style.display = 'none';
     messagesListEl.style.display = 'flex';
+
+    // Remove any DOM nodes that do not belong to current account's messages
+    const currentMsgIds = new Set(messages.map(m => m.id));
+    const currentEls = messagesListEl.querySelectorAll('.message-item');
+    currentEls.forEach(el => {
+      const elId = el.getAttribute('data-msg-id');
+      if (!currentMsgIds.has(elId)) {
+        el.remove();
+        renderedMessageIds.delete(elId);
+      }
+    });
 
     messages.forEach(msg => {
       const existingEl = messagesListEl.querySelector(`[data-msg-id="${msg.id}"]`);
@@ -370,7 +389,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // الرسالة موجودة مسبقاً → فقط حدّث الحالة (مقروءة / محددة) بدون animation
         existingEl.classList.toggle('unread', !msg.seen);
         existingEl.classList.toggle('active', !!(selectedMessage && selectedMessage.id === msg.id));
-        // أزل أي animation متبقية
         existingEl.classList.remove('animate__animated', 'animate__fadeInUp');
       } else {
         // رسالة جديدة → ابنِها مع animation وأضفها للقائمة
